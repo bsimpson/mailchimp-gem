@@ -27,7 +27,7 @@ class ExportTest < Test::Unit::TestCase
         @api.say_hello(@body)
       end
     end
-=begin #pending throw exception decision
+
     should "throw exception if configured to and the Export API replies with a JSON hash containing a key called 'error'" do
       @api.throws_exceptions = true
       params = {:body => @body, :timeout => nil}
@@ -37,7 +37,6 @@ class ExportTest < Test::Unit::TestCase
         @api.say_hello(@body)
       end
     end
-=end
   end
   private
 

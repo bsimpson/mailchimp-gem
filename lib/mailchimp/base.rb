@@ -6,12 +6,13 @@ module Mailchimp
     include HTTParty
     default_timeout 30
 
-    attr_accessor :api_key, :timeout, :options
+    attr_accessor :api_key, :timeout, :options, :throws_exceptions
 
     def initialize(api_key = nil, default_parameters = {})
       @api_key = api_key || ENV['MAILCHIMP_API_KEY'] || nil
       @timeout = default_parameters.delete(:timeout) 
       @default_params = default_parameters
+      @throws_exceptions = false
     end
 
     def dc_from_api_key
