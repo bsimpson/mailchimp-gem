@@ -15,12 +15,14 @@ module Mailchimp
       response = self.class.post(api_url, :body => params, :timeout => timeout)
 
       lines = response.body.lines
+      response = lines.map {|line| JSON.parse(line) }
+
       if @throws_exceptions
         first_line_object = JSON.parse(lines.first) if lines.first
         raise "Error from MailChimp Export API: #{first_line_object["error"]} (code #{first_line_object["code"]})" if first_line_object.is_a?(Hash) && first_line_object["error"]
       end
 
-      lines  
+      response
     end
     class << self
       attr_accessor :api_key
